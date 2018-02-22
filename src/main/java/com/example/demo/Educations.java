@@ -14,8 +14,12 @@ public class Educations {
     private long id;
     private String education;
 
-    @ManyToMany(mappedBy = "educationList")
+    @ManyToMany(mappedBy = "educationList", fetch = FetchType.LAZY)
     private List<Resume> resumes;
+
+    public Educations(){
+        this.resumes = new ArrayList<>();
+    }
 
     public List<Resume> getResumes() {
         return resumes;

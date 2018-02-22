@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,7 @@ public class Skills {
     private String skill;
     private String proficiency;
 
-    @ManyToMany(mappedBy = "skillsList")
+    @ManyToMany(mappedBy = "skillsList", fetch = FetchType.LAZY)
     private List<Resume> resumes;
 
     public List<Resume> getResumes() {
@@ -22,6 +23,9 @@ public class Skills {
     public void setResumes(List<Resume> resumes) {
         this.resumes = resumes;
     }
+    public Skills(){ resumes = new ArrayList<>();
+    }
+
 
     public long getId() {
         return id;

@@ -17,7 +17,7 @@ public class Recruiter {
     private List<Job> postedJobs;
 
 
-    public long getId() {
+    public long getId()  {
         return id;
     }
 

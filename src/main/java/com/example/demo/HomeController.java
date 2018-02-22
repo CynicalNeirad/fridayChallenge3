@@ -79,7 +79,7 @@ public class HomeController {
             return "educationhtml";
         }
         educationStore.save(education);
-        return "redirect:/educationAdded";}
+        return "educationAdded";}
 
 
     @PostMapping("/processskill")

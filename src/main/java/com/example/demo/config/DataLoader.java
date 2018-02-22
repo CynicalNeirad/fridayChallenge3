@@ -70,7 +70,7 @@ public class DataLoader  implements CommandLineRunner{
         user.setPassword("password3");
         user.setFullName("Joe Blow");
         user.setUserEmail("g3@gmail.com");
-        user.addRole(appRoleRepository.findAppRoleByRoleName("USER"));
+        user.addRole(appRoleRepository.findAppRoleByRoleName("ADMIN"));
         appUserRepository.save(user);
 
 
@@ -102,9 +102,9 @@ public class DataLoader  implements CommandLineRunner{
         skillsRepository.save(newSkill);
 
         Resume newResume = new Resume();
-        newResume.addExperience(experienceRepository.findById(new Long(1)));
-        newResume.addEducation(educationRepository.findById(new Long(1)));
-        newResume.addSkills(skillsRepository.findById(new Long(1)));
+        newResume.addExperience(experienceRepository.findById(new Long(2)));
+        newResume.addEducation(educationRepository.findById(new Long(2)));
+        newResume.addSkills(skillsRepository.findById(new Long(2)));
         resumeRepository.save(newResume);
 
 
@@ -115,11 +115,11 @@ public class DataLoader  implements CommandLineRunner{
         resumeRepository.save(newResume);
 
 
-        AppUser appUser=appUserRepository.findOne(new Long(2));
-        appUser.addResume(resumeRepository.findById(new Long(2)));
+        AppUser appUser=appUserRepository.findOne(new Long(1));
+        appUser.addResume(resumeRepository.findById(new Long(1)));
         appUserRepository.save(appUser);
         appUser=appUserRepository.findOne(new Long(3));
-        appUser.addResume(resumeRepository.findById(new Long(1)));
+        appUser.addResume(resumeRepository.findById(new Long(2)));
         appUserRepository.save(appUser);
 
 

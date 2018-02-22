@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <div th:replace="base::css"></div>
+
 </head>
 <body>
+<div th:replace="base::navlinks"></div>
 
 <form action = "#"
       th:action="@{/processreference}"

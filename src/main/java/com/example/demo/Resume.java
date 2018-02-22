@@ -29,6 +29,8 @@ public class Resume {
     private List <AppUser> appUser;
 
     public Resume() {
+
+        appUser=new ArrayList<>();
         this.educationList=new ArrayList<>();
         this.skillsList=new ArrayList<>();
         this.experienceList=new ArrayList<>();
@@ -39,9 +41,7 @@ public class Resume {
     public void addExperience(Experiences p){ this.experienceList.add(p);}
 
 
-    public List<AppUser> ge1tAppUser() {
-        return appUser;
-    }
+    public List<AppUser> ge1tAppUser() { return appUser;}
 
     public void setAppUser(List<AppUser> appUser) {
         this.appUser = appUser;
