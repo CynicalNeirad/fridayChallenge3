@@ -1,6 +1,10 @@
 package com.example.demo;
 
 
+import com.example.demo.repositories.EducationRepository;
+import com.example.demo.repositories.ExperienceRepository;
+import com.example.demo.repositories.ResumeRepository;
+import com.example.demo.repositories.SkillsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +41,7 @@ public class HomeController {
 
     @GetMapping("/education")
     public String educationInfo(Model model){
-        model.addAttribute("education", new Education());
+        model.addAttribute("education", new Educations());
         return "educationhtml";
     }
 
@@ -49,7 +53,7 @@ public class HomeController {
 
     @GetMapping("/experience")
     public String experienceInfo(Model model){
-        model.addAttribute("experiences", new Experience());
+        model.addAttribute("experiences", new Experiences());
         return "experiencehtml";
     }
 
@@ -70,7 +74,7 @@ public class HomeController {
     }
 
     @PostMapping("/processeducation")
-    public String processEducation(@Valid Education education, BindingResult result) {
+    public String processEducation(@Valid Educations education, BindingResult result) {
         if (result.hasErrors()) {
             return "educationhtml";
         }
@@ -84,16 +88,16 @@ public class HomeController {
             return "skillshtml";
         }
         skillsStore.save(skills);
-        return "redirect:/skillAdded";}
+        return "skillAdded";}
 
 
     @PostMapping("/processexperience")
-    public String processExperience(@Valid Experience experience, BindingResult result) {
+    public String processExperience(@Valid Experiences experience, BindingResult result) {
         if (result.hasErrors()) {
             return "experiencehtml";
         }
         experienceStore.save(experience);
-        return "redirect:/experienceAdded";}
+        return "experienceAdded";}
 
     @PostMapping("/processContact")
     public String processContact(@Valid Resume resume, BindingResult result) {
@@ -101,5 +105,9 @@ public class HomeController {
             return "contacts";
         }
         resumeStore.save(resume);
-        return "/contactAdded";}
+        return "contactAdded";}
+
+    @GetMapping("/login")
+    public String login(Model model){return "login";}
+
 }

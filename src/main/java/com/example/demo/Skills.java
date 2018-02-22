@@ -1,9 +1,7 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Skills {
@@ -13,6 +11,17 @@ public class Skills {
     private long id;
     private String skill;
     private String proficiency;
+
+    @ManyToMany(mappedBy = "skillsList")
+    private List<Resume> resumes;
+
+    public List<Resume> getResumes() {
+        return resumes;
+    }
+
+    public void setResumes(List<Resume> resumes) {
+        this.resumes = resumes;
+    }
 
     public long getId() {
         return id;

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Skill</title>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/css.css"/>
@@ -39,21 +39,26 @@
 </nav>
 
 
-<form action = "#"
-      th:action="@{/processskill}"
-      th:object="${skill}"
-      method="post">
-    <input type="hidden" th:field="*{id}" />
-    Skills:<input type="text" th:field= "*{skill}" />
-    <span th:if="${#fields.hasErrors('skill')}"
-          th:errors="*{skill}"></span><br/>
-    Proficiency:<input type="number" th:field= "*{proficiency}" />
-    <span th:if="${#fields.hasErrors('proficiency')}"
-          th:errors="*{proficiency}"></span><br/>
-    //Look at previous resume for how to do this numerically
+<div th:if="${param.error}">
+    Invalid username and password.</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<p>Admin username and password = applicant</p>
+<p>User username and password = employer</p>
+<form th:action="@{/login}" method="post">
+    <div>
+        <lable>Username:<input type ="text" name="username"/></lable>
+    </div>
+    <div>
+        <lable>Password:<input type ="password" name="password"/></lable>
 
-    <br />
-    <input type="submit" values="Submit" />
+    </div>
+
+    <div> <input type="submit" value = "Sign In"/></div>
+
+
 </form>
+
 </body>
 </html>

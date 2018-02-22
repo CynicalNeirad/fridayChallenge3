@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Skill</title>
+    <title>Resume</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/css.css"/>
@@ -38,22 +38,15 @@
     </div>
 </nav>
 
+<table>
+    <tr th:each="reference : ${references}">
+        <td th:text="${reference.references}"></td>
+    </tr>
 
-<form action = "#"
-      th:action="@{/processskill}"
-      th:object="${skill}"
-      method="post">
-    <input type="hidden" th:field="*{id}" />
-    Skills:<input type="text" th:field= "*{skill}" />
-    <span th:if="${#fields.hasErrors('skill')}"
-          th:errors="*{skill}"></span><br/>
-    Proficiency:<input type="number" th:field= "*{proficiency}" />
-    <span th:if="${#fields.hasErrors('proficiency')}"
-          th:errors="*{proficiency}"></span><br/>
-    //Look at previous resume for how to do this numerically
+    <tr> <a sec:authorize="hasAuthority('ADMIN')" href="/addreference">Add a new Reference</a> </tr>
 
-    <br />
-    <input type="submit" values="Submit" />
-</form>
+</table>
+
+
 </body>
 </html>

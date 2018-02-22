@@ -1,17 +1,29 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-public class Education {
+public class Educations {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String education;
+
+    @ManyToMany(mappedBy = "educationList")
+    private List<Resume> resumes;
+
+    public List<Resume> getResumes() {
+        return resumes;
+    }
+
+    public void setResumes(List<Resume> resumes) {
+        this.resumes = resumes;
+    }
 
     public long getId() {
         return id;
