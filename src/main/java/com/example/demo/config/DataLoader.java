@@ -102,7 +102,7 @@ public class DataLoader  implements CommandLineRunner{
         user.setFullName("Jacob Smith");
         user.setUserEmail("g2@gmail.com");
         user.addResume(resumeRepository.findById(new Long(1)));
-        user.addRole(appRoleRepository.findAppRoleByRoleName("RECRUITER"));
+        user.addRole(appRoleRepository.findAppRoleByRoleName("USER"));
         user.addEducation(educationRepository.findById(new Long(1)));
         user.addExperience(experienceRepository.findById(new Long(1)));
         user.addSkills(skillsRepository.findById(new Long(1)));
@@ -119,14 +119,6 @@ public class DataLoader  implements CommandLineRunner{
         user.addExperience(experienceRepository.findById(new Long(1)));
         user.addSkills(skillsRepository.findById(new Long(2)));
         appUserRepository.save(user);
-
-        /*AppUser appUser=appUserRepository.findOne(new Long(1));
-        appUser.addResume(resumeRepository.findById(new Long(1)));
-        appUserRepository.save(appUser);
-        appUser=appUserRepository.findOne(new Long(3));
-        appUser.addResume(resumeRepository.findById(new Long(2)));
-        appUserRepository.save(appUser);
-*/
 
     }
 }

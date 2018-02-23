@@ -29,8 +29,8 @@
                             <a href="/coverletter">Cover Letter</a>
                         </div>
                     </div> </li>
-                <li sec:authorize="hasAuthority('RECRUITER')"><a href="/addJob">Add a Job</a></li>
-                <li sec:authorize="hasAuthority('ADMIN')"><a href="/seeJobs">Look at Jobs</a></li>
+                <li sec:authorize="hasAuthority('USER')"><a href="/jobadd">Add a Job</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/seejobs">Look at Jobs</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/login">Log in</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Log out</a> </li>
             </ul>

@@ -9,16 +9,17 @@
 </head>
 <body>
 
+<span th:text="${job.id}"></span>
 <div th:replace="base::navlinks"></div>
 
 <form action = "#"
-      th:action="@{/processexperience}"
-      th:object="${experiences}"
+      th:action="@{/processJobSkills/{id}(id=${job.id})}"
+      th:object="${newSkill}"
       method="post">
     <input type="hidden" th:field="*{id}" />
-    Education Experience:<input type="text" th:field= "*{experience}" />
-    <span th:if="${#fields.hasErrors('experience')}"
-          th:errors="*{experience}"></span><br/>
+    Skill:<input type="text" th:field= "*{jobSkill}" />
+    <span th:if="${#fields.hasErrors('jobSkill')}"
+          th:errors="*{jobSkill}"></span><br/>
     <br />
     <input type="submit" values="Submit" />
 </form>

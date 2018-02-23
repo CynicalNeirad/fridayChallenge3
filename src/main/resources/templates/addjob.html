@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contact</title>
+    <div th:replace="base::css"></div>
+
+
+</head>
+<body>
+
+<div th:replace="base::navlinks"></div>
+
+
+
+<form action = "#"
+      th:action="@{/processJob}"
+      th:object="${newJob}"
+      method="post">
+    <input type="hidden" th:field="*{id}" />
+    Job Title:<input type="text" th:field= "*{jobTitle}" />
+    <span th:if="${#fields.hasErrors('jobTitle')}"
+          th:errors="*{jobTitle}"></span><br/>
+    Organization :<input type="text" th:field= "*{jobOrganization}" />
+    <span th:if="${#fields.hasErrors('jobOrganization')}"
+          th:errors="*{jobOrganization}"></span><br/>
+    <br />
+    <input type="submit" values="Submit" />
+</form>
+</body>
+</html>

@@ -7,8 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,6 +23,10 @@ public class HomeController {
     ExperienceRepository experienceStore;
     @Autowired
     AppUserRepository userStore;
+    @Autowired
+    JobRepository jobStore;
+    @Autowired
+    JobSkillsRepository jobSkillStore;
 
     @GetMapping("/")
     public String directory(Model model) {
@@ -125,5 +128,52 @@ public class HomeController {
     @GetMapping("/login")
     public String login(Model model){
         return "login";}
+
+    @GetMapping("/jobadd")
+    public  String addJob(Model model){
+        model.addAttribute("newJob", new Job());
+        return "addjob";
+    }
+
+    @PostMapping("/processJob")
+    public String processJob(@Valid Job job, BindingResult result, Authentication authentication) {
+        if (result.hasErrors()) {
+            return "addjob";
+        }
+        jobStore.save(job);
+        AppUser userId = userStore.findAppUserByUsername(authentication.getName());
+        userId.addJob(job);
+        userStore.save(userId);
+        return "jobAdded";}
+
+    @GetMapping("/seejobs")
+    public String seeJobs(Model model){
+        model.addAttribute("jobs",jobStore.findAll());
+        return "seeJobs";
+    }
+
+    @GetMapping("/addSkill/{id}")
+    public  String addSkill(@PathVariable("id") long id, Model model){
+        model.addAttribute("job", jobStore.findById(id));
+        model.addAttribute("newSkill", new RecruiterSkills());
+        return "addSkill";
+    }
+
+
+    @RequestMapping("/processJobSkills/{id}")
+    public String processJobSkills(@PathVariable("id") long id, @Valid @ModelAttribute("newSkill") RecruiterSkills jobskill, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addskill";
+        }
+
+        Job jobId = jobStore.findById(id);
+        jobStore.save(jobId);
+
+        jobId.addSkill(jobskill);
+        jobSkillStore.save(jobskill);
+
+        return "skillAdded";}
+
+
 
 }

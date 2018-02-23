@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Jobs</title>
+    <div th:replace="base::css"></div>
+</head>
+
+<body>
+<div th:replace="base::navlinks"></div>
+
+<div th:each="ajob:${jobs}">
+    <p>Title:</p>
+    <p th:text="${ajob.jobTitle}"></p>
+    <p>Organization:</p>
+    <p th:text="${ajob.jobOrganization}"></p>
+
+    <p>Skills:</p>
+<div th:each="aJob:${ajob.jobSkills}">
+    <p th:text="${aJob.jobSkills}"></p>
+
+</div>
+    <a href="#" th:href="@{/addSkill/{jobid} (jobid = ${ajob.id})}">Add Skills</a>
+
+</div>
+
+</body>
+</html>

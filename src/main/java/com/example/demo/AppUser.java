@@ -42,6 +42,9 @@ public class AppUser {
     @ManyToMany
     private List<Experiences> experienceList;
 
+    @ManyToMany
+    private List<Job> jobs;
+
     public AppUser() {
 
         this.roles = new HashSet<>();
@@ -49,8 +52,9 @@ public class AppUser {
         this.educationList=new ArrayList<>();
         this.skillsList=new ArrayList<>();
         this.experienceList=new ArrayList<>();
+        this.jobs=new ArrayList<>();
     }
-
+    public void addJob(Job p){ this.jobs.add(p);}
     public void addEducation(Educations p){ this.educationList.add(p);}
     public void addSkills(Skills p){this.skillsList.add(p);}
     public void addExperience(Experiences p){ this.experienceList.add(p);}
@@ -150,5 +154,13 @@ public class AppUser {
 
     public void addResume(Resume s){
         this.resumeList.add(s);
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
     }
 }
