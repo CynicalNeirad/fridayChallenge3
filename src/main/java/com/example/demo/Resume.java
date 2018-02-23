@@ -16,29 +16,9 @@ public class Resume {
     private String email;
 
 
-    @ManyToMany
-    private List<Educations> educationList;
-
-    @ManyToMany
-    private List<Skills> skillsList;
-
-    @ManyToMany
-    private List<Experiences> experienceList;
 
     @ManyToMany(mappedBy = "resumeList")
     private List <AppUser> appUser;
-
-    public Resume() {
-
-        appUser=new ArrayList<>();
-        this.educationList=new ArrayList<>();
-        this.skillsList=new ArrayList<>();
-        this.experienceList=new ArrayList<>();
-    }
-
-    public void addEducation(Educations p){ this.educationList.add(p);}
-    public void addSkills(Skills p){this.skillsList.add(p);}
-    public void addExperience(Experiences p){ this.experienceList.add(p);}
 
 
     public List<AppUser> ge1tAppUser() { return appUser;}
@@ -79,27 +59,14 @@ public class Resume {
         this.email = email;
     }
 
-    public List<Educations> getEducationList() {
-        return educationList;
-    }
-
-    public void setEducationList(List<Educations> educationList) {
-        this.educationList = educationList;
-    }
-
-    public List<Skills> getSkillsList() {
-        return skillsList;
-    }
-
-    public void setSkillsList(List<Skills> skillsList) {
-        this.skillsList = skillsList;
-    }
-
-    public List<Experiences> getExperienceList() {
-        return experienceList;
-    }
-
-    public void setExperienceList(List<Experiences> experienceList) {
-        this.experienceList = experienceList;
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "id=" + id +
+                ", resumeImg='" + resumeImg + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", appUser=" + appUser +
+                '}';
     }
 }

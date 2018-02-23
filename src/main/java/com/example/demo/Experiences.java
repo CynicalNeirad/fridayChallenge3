@@ -13,19 +13,19 @@ public class Experiences {
     private String experience;
 
     @ManyToMany(mappedBy = "experienceList", fetch = FetchType.LAZY)
-    private List<Resume> resumes;
+    private List<AppUser> appUsers;
 
     public Experiences(){
-        this.resumes = new ArrayList<>();
+        this.appUsers = new ArrayList<>();
     }
 
 
-    public List<Resume> getResumes() {
-        return resumes;
+    public List<AppUser> getAppUsers() {
+        return appUsers;
     }
 
-    public void setResumes(List<Resume> resumes) {
-        this.resumes = resumes;
+    public void setAppUsers(List<AppUser> appUsers) {
+        this.appUsers = appUsers;
     }
 
     public long getId() {
@@ -42,5 +42,14 @@ public class Experiences {
 
     public void setExperience(String experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return "Experiences{" +
+                "id=" + id +
+                ", experience='" + experience + '\'' +
+                ", appUsers=" + appUsers +
+                '}';
     }
 }

@@ -26,36 +26,59 @@ public class AppUser {
 
     private String fullName;
 
-    public List<Resume> getResumeList() {
-        return resumeList;
-    }
-
-    public void setResumeList(List<Resume> resumeList) {
-        this.resumeList = resumeList;
-    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Resume> resumeList;
 
-    public List<Resume> getUserCartList() {
-        return resumeList;
-    }
-
-    public void setUserResume(List<Resume> userCartList) {
-        this.resumeList = userCartList;
-    }
-
-    public void addResume(Resume s){
-        this.resumeList.add(s);
-    }
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AppRole> roles;
 
+    @ManyToMany
+    private List<Educations> educationList;
+
+    @ManyToMany
+    private List<Skills> skillsList;
+
+    @ManyToMany
+    private List<Experiences> experienceList;
+
     public AppUser() {
+
         this.roles = new HashSet<>();
         this.resumeList=new ArrayList<>();
+        this.educationList=new ArrayList<>();
+        this.skillsList=new ArrayList<>();
+        this.experienceList=new ArrayList<>();
     }
+
+    public void addEducation(Educations p){ this.educationList.add(p);}
+    public void addSkills(Skills p){this.skillsList.add(p);}
+    public void addExperience(Experiences p){ this.experienceList.add(p);}
+
+    public List<Educations> getEducationList() {
+        return educationList;
+    }
+
+    public void setEducationList(List<Educations> educationList) {
+        this.educationList = educationList;
+    }
+
+    public List<Skills> getSkillsList() {
+        return skillsList;
+    }
+
+    public void setSkillsList(List<Skills> skillsList) {
+        this.skillsList = skillsList;
+    }
+
+    public List<Experiences> getExperienceList() {
+        return experienceList;
+    }
+
+    public void setExperienceList(List<Experiences> experienceList) {
+        this.experienceList = experienceList;
+    }
+
 
     public void addRole(AppRole role){
         this.roles.add(role);
@@ -107,5 +130,25 @@ public class AppUser {
 
     public void setRoles(Set<AppRole> roles) {
         this.roles = roles;
+    }
+
+    public List<Resume> getResumeList() {
+        return resumeList;
+    }
+
+    public void setResumeList(List<Resume> resumeList) {
+        this.resumeList = resumeList;
+    }
+
+    public List<Resume> getUserCartList() {
+        return resumeList;
+    }
+
+    public void setUserResume(List<Resume> userCartList) {
+        this.resumeList = userCartList;
+    }
+
+    public void addResume(Resume s){
+        this.resumeList.add(s);
     }
 }

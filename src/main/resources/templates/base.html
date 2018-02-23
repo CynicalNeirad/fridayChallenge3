@@ -23,13 +23,16 @@
                 <li sec:authorize="hasAuthority('ADMIN')"><a href="/references">References</a></li>
                 <li>
                     <div class="dropdown">
-                        <button class="dropbtn">Dropdown</button>
+                        <button class="dropbtn">Resume</button>
                         <div class="dropdown-content">
                             <a href="/resume">Resume</a>
                             <a href="/coverletter">Cover Letter</a>
                         </div>
                     </div> </li>
-                <li><a href="/login">Login</a></li>
+                <li sec:authorize="hasAuthority('RECRUITER')"><a href="/addJob">Add a Job</a></li>
+                <li sec:authorize="hasAuthority('ADMIN')"><a href="/seeJobs">Look at Jobs</a></li>
+                <li sec:authorize="isAnonymous()"><a href="/login">Log in</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/logout">Log out</a> </li>
             </ul>
         </div>
     </nav>

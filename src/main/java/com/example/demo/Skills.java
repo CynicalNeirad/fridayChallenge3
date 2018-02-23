@@ -14,16 +14,16 @@ public class Skills {
     private String proficiency;
 
     @ManyToMany(mappedBy = "skillsList", fetch = FetchType.LAZY)
-    private List<Resume> resumes;
+    private List<AppUser> user;
 
-    public List<Resume> getResumes() {
-        return resumes;
+    public List<AppUser> getUser() {
+        return user;
     }
 
-    public void setResumes(List<Resume> resumes) {
-        this.resumes = resumes;
+    public void setUser(List<AppUser> user) {
+        this.user = user;
     }
-    public Skills(){ resumes = new ArrayList<>();
+    public Skills(){ user = new ArrayList<>();
     }
 
 
@@ -49,5 +49,15 @@ public class Skills {
 
     public void setProficiency(String proficiency) {
         this.proficiency = proficiency;
+    }
+
+    @Override
+    public String toString() {
+        return "Skills{" +
+                "id=" + id +
+                ", skill='" + skill + '\'' +
+                ", proficiency='" + proficiency + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

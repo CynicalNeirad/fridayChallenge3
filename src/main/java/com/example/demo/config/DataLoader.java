@@ -1,7 +1,5 @@
 package com.example.demo.config;
 
-
-
 import com.example.demo.*;
 import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +27,6 @@ public class DataLoader  implements CommandLineRunner{
     @Autowired
     ResumeRepository resumeRepository;
 
-
-
-
     @Override
     public void run(String... strings) throws Exception {
 
@@ -47,31 +42,15 @@ public class DataLoader  implements CommandLineRunner{
         role.setRoleName("ADMIN");
         appRoleRepository.save(role);
 
-        // A few users
-        // User 1
-        AppUser user = new AppUser();
-        user.setUsername("John");
-        user.setPassword("password1");
-        user.setFullName("John Doe");
-        user.setUserEmail("g1@gmail.com");
-        user.addRole(appRoleRepository.findAppRoleByRoleName("USER"));
-        appUserRepository.save(user);
-        // User 2
-        user = new AppUser();
-        user.setUsername("Jacob");
-        user.setPassword("password2");
-        user.setFullName("Jacob Smith");
-        user.setUserEmail("g2@gmail.com");
-        user.addRole(appRoleRepository.findAppRoleByRoleName("USER"));
-        appUserRepository.save(user);
-        // User 3
-        user = new AppUser();
-        user.setUsername("Joe");
-        user.setPassword("password3");
-        user.setFullName("Joe Blow");
-        user.setUserEmail("g3@gmail.com");
-        user.addRole(appRoleRepository.findAppRoleByRoleName("ADMIN"));
-        appUserRepository.save(user);
+        Resume newResume = new Resume();
+        newResume.setName("Richard");
+        newResume.setEmail("Test@Test");
+        resumeRepository.save(newResume);
+
+        newResume = new Resume();
+        newResume.setName("Help");
+        newResume.setEmail("Please@Work");
+        resumeRepository.save(newResume);
 
 
         Experiences newExperience = new Experiences();
@@ -101,27 +80,53 @@ public class DataLoader  implements CommandLineRunner{
         newSkill.setProficiency("2");
         skillsRepository.save(newSkill);
 
-        Resume newResume = new Resume();
-        newResume.addExperience(experienceRepository.findById(new Long(2)));
-        newResume.addEducation(educationRepository.findById(new Long(2)));
-        newResume.addSkills(skillsRepository.findById(new Long(2)));
-        resumeRepository.save(newResume);
 
+        // A few users
+        // User 1
+        AppUser user = new AppUser();
+        user.setUsername("John");
+        user.setPassword("password1");
+        user.setFullName("John Doe");
+        user.setUserEmail("g1@gmail.com");
+        user.addResume(resumeRepository.findById(new Long(1)));
+        user.addRole(appRoleRepository.findAppRoleByRoleName("ADMIN"));
+        user.addExperience(experienceRepository.findById(new Long(2)));
+        user.addEducation(educationRepository.findById(new Long(2)));
+        user.addSkills(skillsRepository.findById(new Long(2)));
 
-        newResume = new Resume();
-        newResume.addEducation(educationRepository.findById(new Long(1)));
-        newResume.addExperience(experienceRepository.findById(new Long(1)));
-        newResume.addSkills(skillsRepository.findById(new Long(1)));
-        resumeRepository.save(newResume);
+        appUserRepository.save(user);
+        // User 2
+        user = new AppUser();
+        user.setUsername("Jacob");
+        user.setPassword("password2");
+        user.setFullName("Jacob Smith");
+        user.setUserEmail("g2@gmail.com");
+        user.addResume(resumeRepository.findById(new Long(1)));
+        user.addRole(appRoleRepository.findAppRoleByRoleName("RECRUITER"));
+        user.addEducation(educationRepository.findById(new Long(1)));
+        user.addExperience(experienceRepository.findById(new Long(1)));
+        user.addSkills(skillsRepository.findById(new Long(1)));
+        appUserRepository.save(user);
+        // User 3
+        user = new AppUser();
+        user.setUsername("Joe");
+        user.setPassword("password3");
+        user.setFullName("Joe Blow");
+        user.setUserEmail("g3@gmail.com");
+        user.addRole(appRoleRepository.findAppRoleByRoleName("ADMIN"));
+        user.addResume(resumeRepository.findById(new Long(2)));
+        user.addEducation(educationRepository.findById(new Long(2)));
+        user.addExperience(experienceRepository.findById(new Long(1)));
+        user.addSkills(skillsRepository.findById(new Long(2)));
+        appUserRepository.save(user);
 
-
-        AppUser appUser=appUserRepository.findOne(new Long(1));
+        /*AppUser appUser=appUserRepository.findOne(new Long(1));
         appUser.addResume(resumeRepository.findById(new Long(1)));
         appUserRepository.save(appUser);
         appUser=appUserRepository.findOne(new Long(3));
         appUser.addResume(resumeRepository.findById(new Long(2)));
         appUserRepository.save(appUser);
-
+*/
 
     }
 }

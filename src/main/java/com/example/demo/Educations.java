@@ -2,9 +2,7 @@ package com.example.demo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Educations {
@@ -15,18 +13,18 @@ public class Educations {
     private String education;
 
     @ManyToMany(mappedBy = "educationList", fetch = FetchType.LAZY)
-    private List<Resume> resumes;
+    private List<AppUser> appUsers;
 
     public Educations(){
-        this.resumes = new ArrayList<>();
+        this.appUsers = new ArrayList<>();
     }
 
-    public List<Resume> getResumes() {
-        return resumes;
+    public List<AppUser> getAppUsers() {
+        return appUsers;
     }
 
-    public void setResumes(List<Resume> resumes) {
-        this.resumes = resumes;
+    public void setAppUsers(List<AppUser> appUsers) {
+        this.appUsers = appUsers;
     }
 
     public long getId() {
@@ -43,5 +41,14 @@ public class Educations {
 
     public void setEducation(String education) {
         this.education = education;
+    }
+
+    @Override
+    public String toString() {
+        return "Educations{" +
+                "id=" + id +
+                ", education='" + education + '\'' +
+                ", appUsers=" + appUsers +
+                '}';
     }
 }
